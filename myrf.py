@@ -15,7 +15,7 @@ OOB_SCORE = True
 WEIGHT_LOW = 0.1433
 WEIGHT_HIGH = 0.8567
 # CLASS_WEIGHT = {1:WEIGHT_LOW, -1:WEIGHT_HIGH}
-CLASS_WEIGHT = "balanced_subsample"
+CLASS_WEIGHT = "balanced"
 
 N_ESTIMATORS = 10
 MAX_LEAF_NODES = None
@@ -98,8 +98,8 @@ def grid_param(param_test):
 
     gsearch = GridSearchCV(estimator = RandomForestClassifier(n_estimators = N_ESTIMATORS, max_depth = MAX_DEPTH,
             max_leaf_nodes = MAX_LEAF_NODES, min_samples_split = MIN_SAMPLES_SPLIT, min_samples_leaf = MIN_SAMPLES_LEAF,
-            max_features = MAX_FEATURES, min_weight_fraction_leaf = WEIGHT_LOW, oob_score = OOB_SCORE, class_weight = CLASS_WEIGHT), 
-            param_grid = param_test, scoring = "roc_auc", cv = 5, n_jobs = N_JOBS)
+            max_features = MAX_FEATURES, oob_score = OOB_SCORE, class_weight = CLASS_WEIGHT), 
+            param_grid = param_test, scoring = "roc_auc", cv = 10, n_jobs = N_JOBS)
     gsearch.fit(X1, y1)
 
     if gsearch.best_params_.has_key("n_estimators"):
@@ -135,34 +135,34 @@ if __name__ == "__main__":
     X2 = train[x2_col]
     y2 = train["label"]
 
-    param_test1 = {"n_estimators":range(10, 201, 10)}
+    param_test1 = {"n_estimators":range(10, 151, 10)}
     grid_param(param_test1)
     print("1 n_estimators set")
-    param_test2 = {"max_features":range(10, 201, 10)}
+    param_test2 = {"max_features":range(10, 46, 5)}
     grid_param(param_test2)
     print("2 max_features set")
-    param_test3 = {"min_samples_split":range(50, 201, 20), "min_samples_leaf":range(10, 60, 10)}
+    param_test3 = {"min_samples_split":range(10, 251, 10), "min_samples_leaf":range(10, 60, 5)}
     grid_param(param_test3)
     print("3 min_samples_split set")
     print("3 min_samples_leaf set")
-    param_test4 = {"max_depth":range(3, 14, 2), "min_samples_split":range(50, 201, 20)}
+    param_test4 = {"max_depth":range(6, 15, 2), "min_samples_split":range(10, 251, 10)}
     grid_param(param_test4)
     print("4 min_samples_split set")
     print("4 max_depth set")
     # prama_test5 = {"max_leaf_nodes":range()}
     # grid_param(param_test5)
     # print("5 max_leaf_nodes set")
-    param_test6 = {"min_samples_split":range(50, 201, 20), "min_samples_leaf":range(10, 60, 10)}
+    param_test6 = {"min_samples_split":range(10, 251, 10), "min_samples_leaf":range(10, 60, 5)}
     grid_param(param_test6)
     print("6 min_samples_split set")
     print("6 min_samples_leaf set")
-    param_test7 = {"max_features":range(10, 201, 10)}
+    param_test7 = {"max_features":range(10, 46, 5)}
     grid_param(param_test7)
     print("7 max_features set")
 
     rf = RandomForestClassifier(n_estimators = N_ESTIMATORS, max_depth = MAX_DEPTH, max_leaf_nodes = MAX_LEAF_NODES,
         min_samples_split = MIN_SAMPLES_SPLIT, min_samples_leaf = MIN_SAMPLES_LEAF, max_features = MAX_FEATURES,
-        min_weight_fraction_leaf = WEIGHT_LOW, oob_score = OOB_SCORE, class_weight = CLASS_WEIGHT, n_jobs = N_JOBS)
+        oob_score = OOB_SCORE, class_weight = CLASS_WEIGHT, n_jobs = N_JOBS)
     rf.fit(X1, y1)
     print("oob_score_: ", rf.oob_score_)
     y1_predprob = rf.predict_proba(X1)[:,1]
