@@ -138,27 +138,27 @@ if __name__ == "__main__":
     param_test1 = {"n_estimators":range(10, 201, 10)}
     grid_param(param_test1)
     print("1 n_estimators set")
-    # param_test2 = {"max_features":range(10, 201, 10)}
-    # grid_param(param_test2)
-    # print("2 max_features set")
-    # param_test3 = {"min_samples_split":range(50, 201, 20), "min_samples_leaf":range(10, 60, 10)}
-    # grid_param(param_test3)
-    # print("3 min_samples_split set")
-    # print("3 min_samples_leaf set")
-    # param_test4 = {"max_depth":range(3, 14, 2), "min_samples_split":range(50, 201, 20)}
-    # grid_param(param_test4)
-    # print("4 min_samples_split set")
-    # print("4 max_depth set")
-    # # prama_test5 = {"max_leaf_nodes":range()}
-    # # grid_param(param_test5)
-    # # print("5 max_leaf_nodes set")
-    # param_test6 = {"min_samples_split":range(50, 201, 20), "min_samples_leaf":range(10, 60, 10)}
-    # grid_param(param_test6)
-    # print("6 min_samples_split set")
-    # print("6 min_samples_leaf set")
-    # param_test7 = {"max_features":range(10, 201, 10)}
-    # grid_param(param_test7)
-    # print("7 max_features set")
+    param_test2 = {"max_features":range(10, 201, 10)}
+    grid_param(param_test2)
+    print("2 max_features set")
+    param_test3 = {"min_samples_split":range(50, 201, 20), "min_samples_leaf":range(10, 60, 10)}
+    grid_param(param_test3)
+    print("3 min_samples_split set")
+    print("3 min_samples_leaf set")
+    param_test4 = {"max_depth":range(3, 14, 2), "min_samples_split":range(50, 201, 20)}
+    grid_param(param_test4)
+    print("4 min_samples_split set")
+    print("4 max_depth set")
+    # prama_test5 = {"max_leaf_nodes":range()}
+    # grid_param(param_test5)
+    # print("5 max_leaf_nodes set")
+    param_test6 = {"min_samples_split":range(50, 201, 20), "min_samples_leaf":range(10, 60, 10)}
+    grid_param(param_test6)
+    print("6 min_samples_split set")
+    print("6 min_samples_leaf set")
+    param_test7 = {"max_features":range(10, 201, 10)}
+    grid_param(param_test7)
+    print("7 max_features set")
 
     rf = RandomForestClassifier(n_estimators = N_ESTIMATORS, max_depth = MAX_DEPTH, max_leaf_nodes = MAX_LEAF_NODES,
         min_samples_split = MIN_SAMPLES_SPLIT, min_samples_leaf = MIN_SAMPLES_LEAF, max_features = MAX_FEATURES,
